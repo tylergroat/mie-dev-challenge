@@ -17,7 +17,7 @@ Requirements
 Technical Detail
 ================
 
-The project has already been started for you. Out of the many, many alternatives, these are the tools we've chosen for this challenge:
+You should be able to develop on Windows, Mac, or Linux. The project has already been started for you. Out of the many, many alternatives, these are the tools we've chosen for this challenge:
 
 * <a href="https://nodejs.org/en/">node.js</a>
 * <a href="https://expressjs.com/">express - web server</a>
@@ -33,10 +33,10 @@ Not required
 Evaluation
 ==========
 
-* We will run your solution in a Centos virtual machine to evaluate it, but you should be able to develop on Windows, Mac, or Linux.
 * We have not defined the database schema for you. You should decide which fields would be useful to collect and what the table structure should be and put the statements necessary for that in schema.sql.
 * Include sample data in your schema.sql file so that we can see what your app looks like fully populated from the start.
 * If you see any "TODO" comments in code, those are for you!
+* You should create a private repo in github that is a clone of this one. When you are ready for us to look at it, let us know and we'll give you the email address of an MIE developer to add as a collaborator to your project who will evaluate it.
 
 Bonus
 =====
