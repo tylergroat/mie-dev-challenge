@@ -14,7 +14,7 @@ Requirements
 * Ability to add multiple game session records associated with a game
 * Main screen should include a listing of available games, including the date of the most recent game session for each
 
-Technical Detail
+Technical detail
 ================
 
 You should be able to develop on Windows, Mac, or Linux. The project has already been started for you. Out of the many, many alternatives, these are the tools we've chosen for this challenge:
@@ -24,22 +24,28 @@ You should be able to develop on Windows, Mac, or Linux. The project has already
 * <a href="https://ejs.co/">EJS - templating</a>
 * <a href="https://mariadb.org/">MariaDB - database backend</a>
 
-Not required
-============
-
-* User account management
-* Reactivity
-
-Evaluation
-==========
+Please note:
 
 * We have not defined the database schema for you. You should decide which fields would be useful to collect and what the table structure should be and put the statements necessary for that in schema.sql.
 * Include sample data in your schema.sql file so that we can see what your app looks like fully populated from the start.
 * If you see any "TODO" comments in code, those are for you!
-* You should create a private repo in github that is a clone of this one. When you are ready for us to look at it, let us know and we'll give you the email address of an MIE developer to add as a collaborator to your project who will evaluate it.
+
+Features that are not required
+==============================
+
+* User account management
+* Reactivity
 
 Bonus
 =====
 
 For extra points, think of a useful feature to add to the system that your friend didn't mention.
 
+Getting the code
+================
+
+Since this is a private git repository, it isn't possible to fork it, so you will need to clone it to your local development environment. Then, create a private github repository of your own and change that to be the upstream of your local copy. Once you are ready for us to see your code, add these users as collaborators to your project:
+
+* https://github.com/lpeckham1
+* https://github.com/george-jones
+* https://github.com/dcornewell
