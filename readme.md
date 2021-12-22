@@ -47,5 +47,4 @@ Getting the code and completing your challenge
 Since this is a private git repository, it isn't possible to fork it, so you will need to clone it to your local development environment. Then, create a private github repository of your own and change that to be the upstream of your local copy. Once you are ready for us to see your code, add these users as collaborators to your project:
 
 * https://github.com/lpeckham1
-* https://github.com/george-jones
 * https://github.com/dcornewell
