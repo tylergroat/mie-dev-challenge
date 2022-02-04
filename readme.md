@@ -24,6 +24,9 @@ You should be able to develop on Windows, Mac, or Linux. The project has already
 * <a href="https://ejs.co/">EJS - templating</a>
 * <a href="https://mariadb.org/">MariaDB - database backend</a>
 
+Also, consider using a [Dockerfile](https://docs.docker.com/engine/reference/builder/) to build your development environement.
+
+
 Please note:
 
 * We have not defined the database schema for you. You should decide which fields would be useful to collect and what the table structure should be and put the statements necessary for that in schema.sql.
