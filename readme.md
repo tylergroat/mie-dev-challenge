@@ -44,7 +44,9 @@ For extra points, think of a useful feature to add to the system that your frien
 Getting the code and completing your challenge
 =====
 
-Since this is a private git repository, it isn't possible to fork it, so you will need to clone it to your local development environment. Then, create a private github repository of your own and change that to be the upstream of your local copy. Once you are ready for us to see your code, add these users as collaborators to your project:
+Since this is a git template repository, it isn't possible to fork it, so you will need to "Use template" and clone it to your local development environment. Then, create a private github repository of your own and change that to be the upstream of your local copy. Once you are ready for us to see your code, add these users as collaborators to your project:
 
 * https://github.com/lpeckham1
 * https://github.com/dcornewell
+* https://github.com/horner
+
