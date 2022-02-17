@@ -11,7 +11,7 @@ const game = require('./routes/game');
 const game_session = require('./routes/game_session');
 
 // TODO: application port should come from config file
-const port = 5000;
+const port = 3000;
 
 // TODO: database connection parameters should come from config file
 const db = mysql.createConnection({
