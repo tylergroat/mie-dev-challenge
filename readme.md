@@ -53,3 +53,19 @@ Since this is a git template repository, it isn't possible to fork it, so you wi
 * https://github.com/dcornewell
 * https://github.com/horner
 
+
+
+Docker Notes
+============
+To start the database as a docker service:
+```
+docker run --name=miedb -d -p 3307:3306 -e MARIADB_USER=app -e MARIADB_PASSWORD=wonderful -e MARIADB_DATABASE=miechallenge -e MARIADB_ROOT_PASSWORD=wonderful mariadb:latest
+```
+NOTE!!!, do not leave the docker running when done testing.  Do a `docker kill miedb` to kill it when done BUT the data in the database will BE GONE!  You can restart it by doing `docker restart miedb` but you should consider doing a `docker rm miedb` to cleanup.
+
+You can connect to it from the host machine using:
+`mysql --host=localhost -P 3307 --user=app --password=wonderful miechallenge`
+or from docker by doing:
+`docker exec -it miedb mysql --host=localhost -P 3306 --user=app --password=wonderful miechallenge`
+
+Bonus points if you can make a fully automated Dockerfile container for building and testing the app with a GitHub Action.
