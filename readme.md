@@ -51,6 +51,7 @@ Since this is a git template repository, it isn't possible to fork it, so you wi
 
 * https://github.com/lpeckham1
 * https://github.com/dcornewell
+* https://github.com/ariserac
 * https://github.com/horner
 
 
