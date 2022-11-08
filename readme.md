@@ -49,6 +49,7 @@ Getting the code and completing your challenge
 
 Since this is a git template repository, it isn't possible to fork it, so you will need to "Use template" and clone it to your local development environment. Then, create a private github repository of your own and change that to be the upstream of your local copy. Once you are ready for us to see your code, add these users as collaborators to your project:
 
+* https://github.com/tslabach
 * https://github.com/lpeckham1
 * https://github.com/dcornewell
 * https://github.com/ariserac
