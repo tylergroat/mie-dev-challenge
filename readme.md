@@ -42,7 +42,17 @@ Features that are not required
 Bonus
 =====
 
-For extra points, think of a useful feature to add to the system that your friend didn't mention.
+For extra points, think of a useful feature to add to the system that your friend didn't mention. Also, you can implement the database using a docker container (notes below)
+
+How We will test (update this if you add steps)
+=====
+Download a zip of code from your fork
+Unzip to a working directory
+cd to the working directory
+mysql -e "CREATE DATABASE devchallenge_<applicant username>"
+mysql devchallenge_<applicant username> < schema.sql
+npm install
+npm start
 
 Getting the code and completing your challenge
 =====
@@ -57,7 +67,7 @@ Since this is a git template repository, it isn't possible to fork it, so you wi
 
 
 
-Docker Notes
+Docker Notes if you'd like to implement a docker container for the database
 ============
 To start the database as a docker service:
 ```
