@@ -46,13 +46,14 @@ For extra points, think of a useful feature to add to the system that your frien
 
 How We will test (update this if you add steps)
 =====
-Download a zip of code from your fork
-Unzip to a working directory
-cd to the working directory
-mysql -e "CREATE DATABASE devchallenge_<applicant username>"
-mysql devchallenge_<applicant username> < schema.sql
-npm install
-npm start
+
+* Download a zip of code from your fork
+* Unzip to a working directory
+* cd to the working directory
+* mysql -e "CREATE DATABASE devchallenge_<applicant username>"
+* mysql devchallenge_<applicant username> < schema.sql
+* npm install
+* npm start
 
 Getting the code and completing your challenge
 =====
