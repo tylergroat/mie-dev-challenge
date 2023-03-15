@@ -44,17 +44,6 @@ Bonus
 
 For extra points, think of a useful feature to add to the system that your friend didn't mention. Also, you can implement the database using a docker container (notes below)
 
-How We will test (update this if you add steps)
-=====
-
-* Download a zip of code from your fork
-* Unzip to a working directory
-* cd to the working directory
-* mysql -e "CREATE DATABASE devchallenge_<applicant username>"
-* mysql devchallenge_<applicant username> < schema.sql
-* npm install
-* npm start
-
 Getting the code and completing your challenge
 =====
 
@@ -82,3 +71,18 @@ or from docker by doing:
 `docker exec -it miedb mysql --host=localhost -P 3306 --user=app --password=wonderful miechallenge`
 
 Bonus points if you can make a fully automated Dockerfile container for building and testing the app with a GitHub Action.
+
+
+How MIE will test your code
+=====
+
+* Reviewer will:
+
+```
+export APPLICANT_USER=''
+git clone git@github.mieweb.com:$APPLICANT_USER/mie-dev-challenge devchallenge_$APPLICANT_USER
+mysql -e "CREATE DATABASE devchallenge_$APPLICANT_USER"
+mysql devchallenge_$APPLICANT_USER < schema.sql
+npm install
+npm start
+```
