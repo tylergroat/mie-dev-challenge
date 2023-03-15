@@ -79,10 +79,15 @@ How MIE will test your code
 * Reviewer will:
 
 ```
+
+# if the developer does not know about or is incapable of dockerizing mysql and loading the data...
 export APPLICANT_USER=''
 git clone git@github.mieweb.com:$APPLICANT_USER/mie-dev-challenge devchallenge_$APPLICANT_USER
 mysql -e "CREATE DATABASE devchallenge_$APPLICANT_USER"
 mysql devchallenge_$APPLICANT_USER < schema.sql
+
+
+# what we really should just have to to (if they do not do the bonus):
 npm install
 npm start
 ```
