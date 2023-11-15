@@ -73,7 +73,7 @@ or from docker by doing:
 Bonus points if you can make a fully automated Dockerfile container for building and testing the app with a GitHub Action.
 
 
-How MIE will test your code
+How MIE will test your code (change this if needed)
 =====
 
 * Reviewer will:
