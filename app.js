@@ -1,51 +1,42 @@
 // app.js
-// Main entry point for application
+// Main entry point for the application
 
 const express = require('express');
-const mysql = require('mysql');
+const mariadb = require('mariadb');
 const path = require('path');
-const bodyParser= require('body-parser');
-const app = express();
-const { getHomePage} = require('./routes/index');
-const game = require('./routes/game');
-const game_session = require('./routes/game_session');
-
-// TODO: application port should come from config file
+const bodyParser = require('body-parser');
+const config = require('./config');
+const { router: indexRouter } = require('./routes/index');
+const { router: gameRouter } = require('./routes/game');
+const { router: gameSessionRouter } = require('./routes/game_session');
 const port = 3000;
+const app = express();
+const { pool } = require('./database');
 
-// TODO: database connection parameters should come from config file
-const db = mysql.createConnection({
-	host: 'localhost',
-	user: 'app',
-	password: 'wonderful',
-	database: 'miechallenge'})
-
-db.connect((err) => {
-	if (err) {
-		throw err;
-	}
-	console.log('Connected to database');
-});
-
-global.db = db;
-
-app.set('port', process.env.port || port);
+app.set('port', process.env.port || config.port);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: false }));
-
-// If there are static files, make a public directory
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Routes
-app.get('/', getHomePage);
-app.get('/add-game', game.getAdd);
-app.post('/add-game', game.postAdd);
-app.get('/edit-game/:id', game.getEdit);
-app.post('/edit-game/:id', game.postEdit);
-app.get('/add-game-session', game_session.getAdd);
-app.post('/add-game-session', game_session.postAdd);
+// Acquire a connection from the pool for each request
+app.use(async (req, res, next) => {
+	try {
+		const connection = await pool.getConnection();
+		req.socket = connection;
+		await next();
+		connection.release(); // Release the connection back to the pool
+	} catch (err) {
+		console.error('Error acquiring database connection:', err);
+		next(err);
+	}
+});
 
-app.listen(port, () => {
-	console.log(`Server running on port: ${port}`);
+// Routes
+app.use('/', indexRouter);
+app.use('/game', gameRouter);
+app.use('/game-session', gameSessionRouter);
+
+app.listen(config.port, () => {
+	console.log(`Server running on port: ${config.port}`);
 });

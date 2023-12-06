@@ -1,9 +1,30 @@
 <%- include('partials/header.ejs') %>
 
-<div>
-	TODO: Display list of board games
-</div>
+<h1>Board Game Directory</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Min Players</th>
+            <th>Max Players</th>
+            <th>Created At</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% for (const game of games) { %>
+            <tr>
+                <td><%= game.title %></td>
+                <td><%= game.description %></td>
+                <td><%= game.min_players %></td>
+                <td><%= game.max_players %></td>
+                <td><%= game.created_at %></td>
+            </tr>
+        <% } %>
+    </tbody>
+</table>
 
 <a href="/add-game">Add Game</a>
 
-<%- include ('partials/footer.ejs') %>
+<%- include('partials/footer.ejs') %>

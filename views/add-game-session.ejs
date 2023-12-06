@@ -1,5 +1,25 @@
-<%- include ('partials/header.ejs') %>
+<%- include('partials/header.ejs') %>
 
-TODO: Make a form for adding a game-playing session
+<h1>Add Game Session</h1>
 
-<%- include ('partials/footer.ejs') %>
+<form action="/add-game-session" method="post">
+  <label for="game_id">Game:</label>
+  <select id="game_id" name="game_id" required>
+    <% for (const game of games) { %>
+      <option value="<%= game.game_id %>"><%= game.title %></option>
+    <% } %>
+  </select>
+
+  <label for="date_played">Date Played:</label>
+  <input type="date" id="date_played" name="date_played" required>
+
+  <label for="attendees">Attendees:</label>
+  <input type="text" id="attendees" name="attendees" required>
+
+  <label for="comments">Comments:</label>
+  <textarea id="comments" name="comments" rows="5"></textarea>
+
+  <button type="submit">Add Session</button>
+</form>
+
+<%- include('partials/footer.ejs') %>
