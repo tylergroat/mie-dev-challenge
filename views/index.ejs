@@ -1,7 +1,15 @@
 <%- include('partials/header.ejs') %>
 
 <div>
-	TODO: Display list of board games
+  <% if (games && games.length > 0) { %>
+    <ul>
+      <% games.forEach(game => { %>
+        <li><%= game.title %> - <%= game.description %></li>
+      <% }); %>
+    </ul>
+  <% } else { %>
+    <p>No board games available.</p>
+  <% } %>
 </div>
 
 <a href="/add-game">Add Game</a>
