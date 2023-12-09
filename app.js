@@ -2,39 +2,46 @@
 // Main entry point for application
 
 const express = require('express');
-const mysql = require('mysql');
 const path = require('path');
-const bodyParser= require('body-parser');
+const bodyParser = require('body-parser');
 const app = express();
-const { getHomePage} = require('./routes/index');
+const config = require('./config');
+const { getHomePage } = require('./routes/index');
 const game = require('./routes/game');
 const game_session = require('./routes/game_session');
 
-// TODO: application port should come from config file
-const port = 3000;
+const port = config.port; //port 3000
 
-// TODO: database connection parameters should come from config file
-const db = mysql.createConnection({
-	host: 'localhost',
-	user: 'app',
-	password: 'wonderful',
-	database: 'miechallenge'})
-
-db.connect((err) => {
-	if (err) {
-		throw err;
-	}
-	console.log('Connected to database');
+// Database Setup
+// Create a connection pool
+const pool = mariadb.createPool({
+	host: config.db.host,
+	user: config.db.user,
+	password: config.db.password,
+	database: config.db.database,
+	trace: true,
+	// connectionLimit: 5
 });
 
-global.db = db;
+pool.getConnection()
+	.then(connection => {
+		console.log('Connected to MariaDB database');
+		connection.release(); // Release the connection back to the pool
+	})
+	.catch(err => {
+		console.error('Error connecting to MariaDB:', err);
+	});
 
+global.pool = pool;
+
+// Configuration
 app.set('port', process.env.port || port);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
-app.use(bodyParser.urlencoded({ extended: false }));
 
+// Middleware
 // If there are static files, make a public directory
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
@@ -46,6 +53,7 @@ app.post('/edit-game/:id', game.postEdit);
 app.get('/add-game-session', game_session.getAdd);
 app.post('/add-game-session', game_session.postAdd);
 
+// Start the server
 app.listen(port, () => {
 	console.log(`Server running on port: ${port}`);
 });
