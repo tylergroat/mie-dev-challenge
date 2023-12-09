@@ -1,5 +1,22 @@
 <%- include ('partials/header.ejs') %>
 
-TODO: Make a form for editing a game
+<div>
+  <h2>Edit Game</h2>
+  <form action="/edit-game/<%= game.game_id %>" method="post">
+    <label for="title">Title:</label>
+    <input type="text" id="title" name="title" value="<%= game.title %>" required>
+
+    <label for="description">Description:</label>
+    <textarea id="description" name="description" rows="4" required><%= game.description %></textarea>
+
+    <label for="minPlayers">Minimum Players:</label>
+    <input type="number" id="minPlayers" name="minPlayers" value="<%= game.min_players %>" required>
+
+    <label for="maxPlayers">Maximum Players:</label>
+    <input type="number" id="maxPlayers" name="maxPlayers" value="<%= game.max_players %>" required>
+
+    <button type="submit">Save Changes</button>
+  </form>
+</div>
 
 <%- include ('partials/footer.ejs') %>
