@@ -1,27 +1,29 @@
 <%- include('partials/header.ejs') %>
 
-<div>
-  <h2>Add Game Session</h2>
-  <form action="/add-game-session" method="post">
-    <label for="gameId">Game:</label>
-    <select id="gameId" name="gameId" required>
-      <!-- Iterate over the available games and create an option for each -->
-      <% games.forEach(game => { %>
-        <option value="<%= game.game_id %>"><%= game.title %></option>
-      <% }); %>
-    </select>
+    <div class="container">
+        <h2>Add Game Session</h2>
+        <form action="/add-game-session" method="post">
+            <label for="gameId">Game:</label>
+            <select id="gameId" name="gameId" required>
+                <!-- Iterates over the available games and creates an option for each -->
+                <% games.forEach(game=> { %>
+                    <option value="<%= game.game_id %>">
+                        <%= game.title %>
+                    </option>
+                    <% }); %>
+            </select>
 
-    <label for="datePlayed">Date Played:</label>
-    <input type="date" id="datePlayed" name="datePlayed" required>
+            <label for="datePlayed">Date Played:</label>
+            <input type="date" id="datePlayed" name="datePlayed" required>
 
-    <label for="attendees">Attendees:</label>
-    <input type="text" id="attendees" name="attendees" required>
+            <label for="attendees">Attendees:</label>
+            <input type="text" id="attendees" name="attendees" required>
 
-    <label for="comments">Comments:</label>
-    <textarea id="comments" name="comments" rows="4"></textarea>
+            <label for="comments">Comments:</label>
+            <textarea id="comments" name="comments" rows="4"></textarea>
 
-    <button type="submit">Add Session</button>
-  </form>
-</div>
+            <button type="submit">Add Session</button>
+        </form>
+    </div>
 
-<%- include('partials/footer.ejs') %>
+    <%- include('partials/footer.ejs') %>
