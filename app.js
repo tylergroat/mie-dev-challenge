@@ -2,6 +2,7 @@
 // Main entry point for application
 
 const express = require('express');
+const mariadb = require('mariadb');
 const path = require('path');
 const bodyParser = require('body-parser');
 const app = express();
