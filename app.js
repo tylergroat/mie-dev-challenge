@@ -10,7 +10,6 @@ const config = require('./config');
 const { getHomePage } = require('./routes/index');
 const game = require('./routes/game');
 const game_session = require('./routes/game_session');
-const fs = require('fs'); // Require the fs module
 
 const port = config.port; //port 3000
 
@@ -29,17 +28,9 @@ pool.getConnection()
 	.then(connection => {
 		console.log('Connected to MariaDB database');
 		connection.release(); // Release the connection back to the pool
-
-		// Read and execute the schema.sql file
-		const schemaPath = path.join(__dirname, 'schema.sql');
-		const schemaContent = fs.readFileSync(schemaPath, 'utf8');
-		return connection.query(schemaContent);
-	})
-	.then(() => {
-		console.log('Schema script executed successfully');
 	})
 	.catch(err => {
-		console.error('Error connecting to MariaDB or executing schema script:', err);
+		console.error('Error connecting to MariaDB:', err);
 	});
 
 global.pool = pool;
