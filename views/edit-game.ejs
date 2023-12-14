@@ -17,10 +17,31 @@
 
       <button type="submit">Save Changes</button>
     </form>
-    
-    <form action="/delete-game/<%= game.game_id %>" method="post">
-      <button type="submit" style="color: red;">Delete Game</button>
-    </form>
+
+    <!-- Delete confirmation popup -->
+    <div id="deletePopup" style="display: none;">
+      <p>Are you sure you want to delete this game?</p>
+      <form action="/delete-game/<%= game.game_id %>" method="post">
+        <button type="submit" style="color: red;">Yes, Delete Game</button>
+      </form>
+      <button onclick="closeDeletePopup()">Cancel</button>
+    </div>
+
+    <!-- Button to open the delete confirmation popup -->
+    <button id="deleteButton" onclick="openDeletePopup()" style="color: red;">Delete Game</button>
   </div>
 
   <%- include('partials/footer.ejs') %>
+
+    <script>
+      // JavaScript functions to handle opening and closing the delete confirmation popup
+      function openDeletePopup() {
+        document.getElementById('deletePopup').style.display = 'block';
+        document.getElementById('deleteButton').style.display = 'none';
+      }
+
+      function closeDeletePopup() {
+        document.getElementById('deletePopup').style.display = 'none';
+        document.getElementById('deleteButton').style.display = 'block';
+      }
+    </script>
