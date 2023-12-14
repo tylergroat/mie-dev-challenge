@@ -16,7 +16,11 @@ module.exports = {
       .catch(err => {
         console.error('Error fetching games for session add:', err);
         res.redirect('/');
-      });
+      })
+    // .finally(() => {
+    // 	connection.release(); // Release the connection back to the pool
+    // })
+    ;
   },
 
   // Process the form submission for adding a game-playing session
@@ -37,6 +41,10 @@ module.exports = {
       .catch(err => {
         console.error('Error adding game session:', err);
         res.redirect('/add-game-session'); // Redirect to the add-game-session page in case of an error
-      });
+      })
+    // .finally(() => {
+    // 	connection.release(); // Release the connection back to the pool
+    // })
+    ;
   },
 };

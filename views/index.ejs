@@ -1,17 +1,22 @@
 <%- include('partials/header.ejs') %>
 
-<div>
-  <% if (games && games.length > 0) { %>
-    <ul>
-      <% games.forEach(game => { %>
-        <li><%= game.title %> - <%= game.description %></li>
-      <% }); %>
-    </ul>
-  <% } else { %>
-    <p>No board games available.</p>
-  <% } %>
-</div>
+  <div>
+    <% if (games && games.length> 0) { %>
+      <ul>
+        <% games.forEach(game=> { %>
+          <li>
+            <%= game.title %> - <%= game.description %>
+                <a href="/edit-game/<%= game.game_id %>">
+                  <button style='font-size:24px'>
+                    <i class='fas fa-edit'></i>
+                  </button>
+                </a>
+          </li>
+          <% }); %>
+      </ul>
+      <% } else { %>
+        <p>No board games available.</p>
+        <% } %>
+  </div>
 
-<a href="/add-game">Add Game</a>
-
-<%- include ('partials/footer.ejs') %>
+  <%- include('partials/footer.ejs') %>

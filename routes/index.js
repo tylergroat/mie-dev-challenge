@@ -13,6 +13,10 @@ module.exports = {
 			.catch(err => {
 				console.error('Error fetching games:', err);
 				res.render('index', { games: [], title: 'Board Games' });
-			});
+			})
+			// .finally(() => {
+			// 	connection.release(); // Release the connection back to the pool
+			// })
+			;
 	}
 };

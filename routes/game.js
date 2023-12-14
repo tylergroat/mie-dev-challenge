@@ -20,13 +20,17 @@ module.exports = {
 				if (game.length === 0) {
 					res.redirect('/'); // Redirect to home if the game is not found
 				} else {
-					res.render('edit-game', { game: game[0] }); // Pass the fetched game to the EJS template
+					res.render('edit-game', { game: game[0], title: 'Board Games | Edit Game' }); // Pass the fetched game and title to the EJS template
 				}
 			})
 			.catch(err => {
 				console.error('Error fetching game for edit:', err);
 				res.redirect('/');
-			});
+			})
+			// .finally(() => {
+			// 	connection.release(); // Release the connection back to the pool
+			// })
+			;
 	},
 
 	postAdd: (req, res) => {
@@ -48,7 +52,11 @@ module.exports = {
 			.catch(err => {
 				console.error('Error adding game:', err);
 				res.redirect('/add-game'); // Redirect to the add-game page in case of an error
-			});
+			})
+			// .finally(() => {
+			// 	connection.release(); // Release the connection back to the pool
+			// })
+			;
 	},
 	// Process the edit game form submission
 	postEdit: (req, res) => {
@@ -67,7 +75,31 @@ module.exports = {
 			.catch(err => {
 				console.error('Error editing game:', err);
 				res.redirect('/');
-			});
-	}
+			})
+			// .finally(() => {
+			// 	connection.release(); // Release the connection back to the pool
+			// })
+			;
+	},
+	// Handle the delete game operation
+	postDelete: (req, res) => {
+		const gameId = req.params.id;
 
+		// Use the connection pool to delete the game from the database
+		pool.getConnection()
+			.then(connection => {
+				return connection.query('DELETE FROM Games WHERE game_id = ?', [gameId]);
+			})
+			.then(() => {
+				res.redirect('/'); // Redirect to home after deleting
+			})
+			.catch(err => {
+				console.error('Error deleting game:', err);
+				res.redirect('/');
+			})
+			// .finally(() => {
+			// 	connection.release(); // Release the connection back to the pool
+			// })
+			;
+	}
 };
