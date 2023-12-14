@@ -2,9 +2,11 @@
 
 module.exports = {
   getAdd: (req, res) => {
+    let connection;
     // Fetch available games to populate the dropdown
     pool.getConnection()
-      .then(connection => {
+      .then(conn => {
+        connection = conn;
         return connection.query('SELECT game_id, title FROM Games');
       })
       .then(games => {
@@ -17,17 +19,23 @@ module.exports = {
         console.error('Error fetching games for session add:', err);
         res.redirect('/');
       })
-    // .finally(() => {
-    // 	connection.release(); // Release the connection back to the pool
-    // })
-    ;
+      .finally(() => {
+        if (connection) {
+          connection.release(); // Release the connection back to the pool
+          console.log('connection released - getAdd in game_session.js');
+
+        }
+      })
+      ;
   },
 
   // Process the form submission for adding a game-playing session
   postAdd: (req, res) => {
+    let connection;
     const { gameId, datePlayed, attendees, comments } = req.body;
     pool.getConnection()
-      .then(connection => {
+      .then(conn => {
+        connection = conn;
         // Insert a new game session into the 'GameSessions' table
         return connection.query(
           'INSERT INTO GameSessions (game_id, date_played, attendees, comments) VALUES (?, ?, ?, ?)',
@@ -42,9 +50,13 @@ module.exports = {
         console.error('Error adding game session:', err);
         res.redirect('/add-game-session'); // Redirect to the add-game-session page in case of an error
       })
-    // .finally(() => {
-    // 	connection.release(); // Release the connection back to the pool
-    // })
-    ;
+      .finally(() => {
+        if (connection) {
+          connection.release(); // Release the connection back to the pool
+          console.log('connection released - postAdd in game_session.js');
+
+        }
+      })
+      ;
   },
 };
