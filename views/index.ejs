@@ -1,6 +1,27 @@
 <%- include('partials/header.ejs') %>
 
   <div class="container">
+    <h2>Game Sessions</h2>
+    <% if (gameSessions && gameSessions.length> 0) { %>
+      <ul>
+        <% gameSessions.forEach(session=> { %>
+          <li>
+            <p>Date Played: <%= session.date_played %>
+            </p>
+            <p>Attendees: <%= session.attendees %>
+            </p>
+            <p>Comments: <%= session.comments %>
+            </p>
+          </li>
+          <% }); %>
+      </ul>
+      <% } else { %>
+        <p>No game sessions recorded yet.</p>
+        <% } %>
+  </div>
+
+  <div class="container">
+    <h2>Games</h2>
     <% if (games && games.length> 0) { %>
       <ul>
         <% games.forEach(game=> { %>

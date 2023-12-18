@@ -4,26 +4,25 @@ module.exports = {
 	getHomePage: (req, res) => {
 		let connection;
 
-		// Use the connection pool to query the database for games
+		// Use the connection pool to query the database for games and game sessions
 		pool.getConnection()
 			.then(conn => {
 				connection = conn; // Assign the connection to the outer variable
-				// console.log(`(.then) Total connections in the pool: ${pool.totalConnections()}`);
-				return connection.query('SELECT * FROM Games');
+				return Promise.all([
+					connection.query('SELECT * FROM Games'),
+					connection.query('SELECT * FROM GameSessions'),
+				]);
 			})
-			.then(games => {
-				res.render('index', { games, title: 'Board Games' });
+			.then(([games, gameSessions]) => {
+				res.render('index', { games, gameSessions, title: 'Board Games' });
 			})
 			.catch(err => {
-				console.error('Error fetching games:', err);
-				res.render('index', { games: [], title: 'Board Games' });
+				console.error('Error fetching data:', err);
+				res.render('index', { games: [], gameSessions: [], title: 'Board Games' });
 			})
 			.finally(() => {
 				if (connection) {
-					// console.log(`(.finally - before .release) Total connections in the pool: ${pool.totalConnections()}`);
 					connection.release(); // Release the connection back to the pool
-					// console.log('Connection released - getHomePage in index.js');
-					// console.log(`(.finally - after .release) Total connections in the pool: ${pool.totalConnections()}`);
 				}
 			});
 	}
