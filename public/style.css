@@ -101,7 +101,6 @@ button {
     cursor: pointer;
     border: none;
     margin-bottom: 10px;
-    
 }
 
 button:hover {
@@ -145,6 +144,21 @@ ul {
     list-style-type: none;
     padding: 0;
 }
+
+.game-sessions-list li,
+.games-list li {
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #007bba;
+    transition: background-color 0.64s ease;
+}
+
+.game-sessions-list li:hover,
+.games-list li:hover {
+    background-color: #007cba7f;
+}
+
 
 li {
     margin-bottom: 15px;

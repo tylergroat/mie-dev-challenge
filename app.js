@@ -47,6 +47,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
 app.get('/', getHomePage);
+app.post('/delete-game-session/:session_id', game_session.deleteGameSession); // Add this line for deleting game sessions
 app.get('/add-game', game.getAdd);
 app.post('/add-game', game.postAdd);
 app.get('/edit-game/:id', game.getEdit);
