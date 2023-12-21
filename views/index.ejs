@@ -16,25 +16,16 @@
               <p>Comments: <%= session.comments %>
               </p>
             </div>
-            <button class="delete-button" onclick="openDeletePopup()">
+            <button class="delete-button" onclick="openDeletePopup('<%= session.session_id %>')">
               <i class='fas fa-trash-alt'></i>
             </button>
-            <!-- Delete confirmation popup -->
-            <div id="deletePopup" style="display: none;">
-              <p>Are you sure you want to delete this game session?</p>
-              <form action="/delete-game-session/<%= session.session_id %>" method="post">
-                <button type="submit" class="delete-button">Yes, Delete Session</button>
-              </form>
-              <button onclick="closeDeletePopup()">Cancel</button>
-            </div>
           </li>
           <% }); %>
       </ul>
       <% } else { %>
-        <p>No game sessions recorded yet.</p>
+        <p>No game sessions yet - add a game session!</p>
         <% } %>
   </div>
-
 
   <div class="container">
     <h2>Games</h2>
@@ -52,16 +43,26 @@
           <% }); %>
       </ul>
       <% } else { %>
-        <p>No games available - add a game!</p>
+        <p>No games - add a game!</p>
         <% } %>
+  </div>
+
+  <!-- Single Delete Confirmation Popup -->
+  <div id="deletePopup"
+    style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: #fff; padding: 20px; border: 1px solid #ddd; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); z-index: 1000;">
+    <p>Are you sure you want to delete this game session?</p>
+    <form id="deleteForm" action="" method="post">
+      <button type="submit" class="delete-button">Yes, Delete Session</button>
+    </form>
+    <button onclick="closeDeletePopup()">Cancel</button>
   </div>
 
   <%- include('partials/footer.ejs') %>
 
     <script>
-      // JavaScript functions to handle opening and closing the delete confirmation popup
-      function openDeletePopup() {
+      function openDeletePopup(sessionId) {
         document.getElementById('deletePopup').style.display = 'block';
+        document.getElementById('deleteForm').action = '/delete-game-session/' + sessionId;
       }
 
       function closeDeletePopup() {
