@@ -1,6 +1,6 @@
 -- schema.sql
 
--- Create the database if it doesn't exist
+-- Create the database
 CREATE DATABASE IF NOT EXISTS miechallenge;
 
 -- Use the database
@@ -26,22 +26,22 @@ CREATE TABLE IF NOT EXISTS GameSessions (
     FOREIGN KEY (game_id) REFERENCES Games(game_id)
 );
 
--- Insert sample data if the table was just created or is empty
+-- Games sample data
+-- Inserts sample data if the table is empty during execution
 INSERT INTO Games (title, description, min_players, max_players)
-SELECT 'Settlers of Catan', 'Build and settle on the island of Catan', 3, 4
+SELECT 'Scrabble', 'Word game where players score points by placing tiles, bearing a single letter, onto a gameboard', 2, 4
 UNION
-SELECT 'Ticket to Ride', 'Build train routes across the country', 2, 5
+SELECT 'Monopoly', 'Real estate trading game', 2, 6
 UNION
-SELECT 'Codenames', 'Word game of guessing and deduction', 4, 8
+SELECT 'Chess', 'Strategy board game played on a checkered board', 2, 2
 WHERE NOT EXISTS (SELECT 1 FROM Games LIMIT 1);
 
--- Insert sample data if the table was just created or is empty
+-- GameSessions sample data
+-- Inserts sample data if the table is empty during execution
 INSERT INTO GameSessions (game_id, date_played, attendees, comments)
-SELECT 1, '2023-01-15', 'Alice, Bob, Charlie', 'Close game, intense trading!'
+SELECT 1, '2023-01-15', 'Alice, Bob', 'Intense word battle!'
 UNION
-SELECT 2, '2023-02-03', 'Alice, Bob, Carol, Dave', 'Longest route achievement unlocked!'
+SELECT 2, '2023-02-03', 'Alice, Bob, Carol, Dave', 'Epic real estate trading!'
 UNION
-SELECT 3, '2023-02-20', 'Alice, Bob, Charlie, Eve', 'Epic spy showdown!'
-UNION
-SELECT 1, '2023-03-10', 'Alice, Bob, Carol, Dave', 'New player joined, great addition!'
+SELECT 3, '2023-02-20', 'Alice, Bob', 'Tactical moves and strategy!'
 WHERE NOT EXISTS (SELECT 1 FROM GameSessions LIMIT 1);
