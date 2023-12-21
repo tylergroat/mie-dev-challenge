@@ -6,21 +6,19 @@
       <ul class="game-sessions-list">
         <% gameSessions.forEach(session=> { %>
           <li>
-            <p style="font-size: 18px; font-weight: bold;">
-              Game Title: <%= session.game && session.game.title %>
-            </p>
-            <p>Date: <%= session.date_played %>
-            </p>
-            <p>Attendees: <%= session.attendees %>
-            </p>
-            <p>Comments: <%= session.comments %>
-            </p>
-
-            <!-- Button to open the delete confirmation popup -->
+            <div>
+              <p style="font-size: 18px; font-weight: bold;">Game: <%= session.game && session.game.title %>
+              </p>
+              <p>Date: <%= new Date(session.date_played).toLocaleDateString() %>
+              </p>
+              <p>Attendees: <%= session.attendees %>
+              </p>
+              <p>Comments: <%= session.comments %>
+              </p>
+            </div>
             <button class="delete-button" onclick="openDeletePopup()">
               <i class='fas fa-trash-alt'></i>
             </button>
-
             <!-- Delete confirmation popup -->
             <div id="deletePopup" style="display: none;">
               <p>Are you sure you want to delete this game session?</p>
@@ -29,7 +27,6 @@
               </form>
               <button onclick="closeDeletePopup()">Cancel</button>
             </div>
-
           </li>
           <% }); %>
       </ul>
@@ -37,6 +34,7 @@
         <p>No game sessions recorded yet.</p>
         <% } %>
   </div>
+
 
   <div class="container">
     <h2>Games</h2>
@@ -54,7 +52,7 @@
           <% }); %>
       </ul>
       <% } else { %>
-        <p>No board games available.</p>
+        <p>No games available - add a game!</p>
         <% } %>
   </div>
 
@@ -69,5 +67,4 @@
       function closeDeletePopup() {
         document.getElementById('deletePopup').style.display = 'none';
       }
-
     </script>
