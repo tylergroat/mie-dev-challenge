@@ -1,7 +1,8 @@
 Board Game Directory
 =====
-
 This project is a simple web app tool for planning board game nights.
+
+Demo video: https://www.youtube.com/watch?v=PRd5nxhMun8
 
 Main Features:
 =====
